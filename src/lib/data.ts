@@ -72,9 +72,9 @@ export interface Achievement {
 
 // ---------- Data (PLACEHOLDER: replace with résumé content) ----------
 export const PROFILE: Profile = {
-   name: 'Shimra',
-  firstName: 'Shimra',
-  initials: 'SH',
+   name: 'Sara',
+  firstName: 'Sara',
+  initials: 'SA',
   role: 'Full Stack Developer',
   email: 'you@example.com',
   phone: '+00 00000 00000',
