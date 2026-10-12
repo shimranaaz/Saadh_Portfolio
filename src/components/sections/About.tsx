@@ -74,35 +74,34 @@ export default function About() {
 
   const toggle = () => setFlipped((f) => !f)
 
-  // The degree = the education entry that ends latest
+  // Everything below is derived from data.ts (nothing invented)
   const degree = [...EDUCATION].sort((a, b) => lastYear(b.period) - lastYear(a.period))[0]
-  const validTill = degree ? String(lastYear(degree.period) || '') : ''
-  const dept = degree?.title.split(',')[1]?.trim() ?? ''
-  const solved = ACHIEVEMENTS.filter((a) => /solved/i.test(a.label)).reduce(
-    (sum, a) => sum + a.value,
-    0,
-  )
+  const gradYear = degree ? String(lastYear(degree.period) || '') : ''
+  const current = EXPERIENCE[0]
+  const city = PROFILE.location.split(',')[0]?.trim() ?? ''
+  const firstLine = (s: string) => s.split('\n')[0] ?? ''
+  const topAch = ACHIEVEMENTS[0]
 
   const backItems = [
     {
       t: PROFILE.role,
-      s: PROJECTS.slice(0, 3).map((p) => p.title).join(' · '),
+      s: PROJECTS.slice(0, 2).map((p) => p.title).join(' · '),
     },
-    degree && { t: degree.title, s: degree.detail },
-    EXPERIENCE[0] && { t: EXPERIENCE[0].title, s: EXPERIENCE[0].place },
-    solved > 0 && { t: 'Problem solver', s: `${solved.toLocaleString()} problems solved` },
-    CERTIFICATIONS.length > 0 && {
-      t: 'Always learning',
-      s: `${CERTIFICATIONS.length} certifications`,
+    current && { t: current.title, s: current.place },
+    degree && { t: degree.title, s: firstLine(degree.detail) },
+    topAch && {
+      t: `${topAch.value}${topAch.suffix ?? ''} ${topAch.label.toLowerCase()}`,
+      s: topAch.caption,
     },
+    CERTIFICATIONS[0] && { t: CERTIFICATIONS[0].title, s: CERTIFICATIONS[0].issuer },
   ].filter((x): x is BackItem => Boolean(x))
 
   const facts = [
     { k: 'Based in', v: PROFILE.location },
-    { k: 'Studying', v: degree?.title },
-    { k: 'Batch', v: degree?.period },
-    { k: 'Experience', v: EXPERIENCE[0]?.place },
-    { k: 'Focus', v: PROFILE.role },
+    { k: 'Education', v: degree?.title },
+    { k: 'Graduated', v: gradYear },
+    { k: 'Currently', v: current ? `${current.title}, ${current.place}` : '' },
+    { k: 'Email', v: PROFILE.email },
   ].filter((f) => f.v)
 
   return (
@@ -185,15 +184,17 @@ export default function About() {
           var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 13px);}
 
         /* back */
-        .back{transform:rotateY(180deg);padding:30px 22px 20px;display:flex;
-          flex-direction:column;gap:14px;}
+        .back{transform:rotateY(180deg);padding:30px 22px 18px;display:flex;
+          flex-direction:column;gap:12px;}
         .back h3{font-weight:700;font-size:17px;letter-spacing:-.02em;margin-top:6px;}
-        .back ul{display:grid;gap:11px;list-style:none;padding:0;margin:0;}
+        .back ul{display:grid;gap:9px;list-style:none;padding:0;margin:0;}
         .back li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;align-items:start;}
         .back li svg{margin-top:1px;}
         .back li b{display:block;font-size:12.5px;font-weight:600;line-height:1.25;}
-        .back li small{display:block;font-size:10px;color:var(--mute);line-height:1.35;margin-top:1px;}
-        .back .sign{margin-top:auto;font-family:var(--font-serif);font-style:italic;font-size:28px;line-height:1;}
+        .back li small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+          overflow:hidden;font-size:10px;color:var(--mute);line-height:1.35;margin-top:1px;}
+        .back .sign{margin-top:auto;font-family:var(--font-serif);font-style:italic;
+          font-size:26px;line-height:1;}
         .back .found{font-family:var(--font-mono);font-size:9px;color:var(--mute);
           letter-spacing:.02em;overflow-wrap:anywhere;}
 
@@ -203,7 +204,7 @@ export default function About() {
         .fact{display:flex;justify-content:space-between;gap:16px;padding:14px 0;
           border-bottom:1px solid var(--line);font-size:15px;}
         .fact span:first-child{color:var(--mute);font-family:var(--font-mono);
-          font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px;}
+          font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px;flex:none;}
         .fact span:last-child{text-align:right;}
         .quote{font-family:var(--font-serif);font-style:italic;font-size:24px;
           line-height:1.25;color:var(--ink-2);margin-top:8px;}
@@ -220,21 +221,20 @@ export default function About() {
             <p className="about-sum rv" style={{ ['--i' as string]: 1 }}>
               {PROFILE.resumeSummary}
             </p>
-            <div className="about-btns rv" style={{ ['--i' as string]: 2 }}>
-              <a className="btn btn-primary" href={PROFILE.resume} download>
-                Résumé ↓
-              </a>
-              {PROFILE.github && (
-                <a className="btn btn-secondary" href={PROFILE.github} target="_blank" rel="noreferrer">
-                  GitHub ↗
-                </a>
-              )}
-              {PROFILE.linkedin && (
-                <a className="btn btn-secondary" href={PROFILE.linkedin} target="_blank" rel="noreferrer">
-                  LinkedIn ↗
-                </a>
-              )}
-            </div>
+            {(PROFILE.github || PROFILE.linkedin) && (
+              <div className="about-btns rv" style={{ ['--i' as string]: 2 }}>
+                {PROFILE.github && (
+                  <a className="btn btn-primary" href={PROFILE.github} target="_blank" rel="noreferrer">
+                    GitHub ↗
+                  </a>
+                )}
+                {PROFILE.linkedin && (
+                  <a className="btn btn-secondary" href={PROFILE.linkedin} target="_blank" rel="noreferrer">
+                    LinkedIn ↗
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
           {/* CENTRE: lanyard card */}
@@ -268,7 +268,7 @@ export default function About() {
                     <div className="photo-wrap">
                       <div className="ring">
                         <div className="photo">
-                          <img src="/id.png" alt={`Portrait of ${PROFILE.name}`} />
+                          <img src="/id-card.png" alt={`Portrait of ${PROFILE.name}`} />
                         </div>
                       </div>
                     </div>
@@ -277,10 +277,12 @@ export default function About() {
                     <p className="id-role">{PROFILE.role}</p>
 
                     <div className="id-cols">
-                      <div className="id-col"><span>ID No.</span><span>DEV-001</span></div>
-                      {dept && <div className="id-col"><span>Dept.</span><span>{dept}</span></div>}
-                      {validTill && (
-                        <div className="id-col"><span>Valid till</span><span>{validTill}</span></div>
+                      {city && <div className="id-col"><span>Based</span><span>{city}</span></div>}
+                      {current && (
+                        <div className="id-col"><span>Now</span><span>{current.place}</span></div>
+                      )}
+                      {gradYear && (
+                        <div className="id-col"><span>Grad.</span><span>{gradYear}</span></div>
                       )}
                     </div>
 
@@ -314,7 +316,7 @@ export default function About() {
                         </li>
                       ))}
                     </ul>
-                    <p className="sign">{PROFILE.name}</p>
+                    <p className="sign">{PROFILE.firstName}</p>
                     <p className="found">If found, say hello · {PROFILE.email}</p>
                   </div>
                 </div>
@@ -333,9 +335,11 @@ export default function About() {
                 </div>
               ))}
             </div>
-            <p className="quote rv" style={{ ['--i' as string]: 2 }}>
-              “Placeholder quote. Will be a paraphrase of the résumé.”
-            </p>
+            {PROFILE.quote && (
+              <p className="quote rv" style={{ ['--i' as string]: 2 }}>
+                “{PROFILE.quote}”
+              </p>
+            )}
           </div>
         </div>
       </div>

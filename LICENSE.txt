@@ -1,0 +1,62 @@
+Portfolio Animated — LICENCE AGREEMENT
+
+Copyright (c) 2026 [YOUR FULL NAME]. All rights reserved.
+
+This licence applies to the template source code, documentation (including
+BUYER-GUIDE.md) and any original media supplied by the author in this package
+("the Template"). By downloading or using the Template you agree to these terms.
+
+1. WHAT YOU MAY DO
+   - Use the Template to build and publish ONE website (personal or professional)
+     for yourself.
+   - Modify the code, design, text and media for that one website.
+   - Keep the site live for as long as you wish.
+
+2. WHAT YOU MAY NOT DO
+   - Resell, redistribute, share, sublicense or give away the Template, in whole
+     or in part, in original or modified form (including on GitHub as a public
+     template, on marketplaces, or in course materials).
+   - Use the Template for more than one website, or for client websites, unless
+     you buy an additional licence from the author.
+   - Claim that you are the original author of the Template or present it as a
+     template product of your own.
+
+3. THIRD-PARTY MATERIALS
+   The Template includes third-party materials that remain under their own licences:
+   - devicon (MIT licence). Licence file: public/logos/LICENSE-devicon.txt
+   - simple-icons (CC0). Licence file: public/logos/LICENSE-simple-icons.txt
+     Brand logos remain trademarks of their respective owners; their inclusion
+     does not imply endorsement.
+   - Fonts: Inter Tight, JetBrains Mono and Instrument Serif (installed via the
+     Fontsource npm packages), under the SIL Open Font License. They may not be
+     sold on their own.
+   - Software dependencies installed with npm (such as React, Vite, Tailwind CSS
+     and Lenis) remain under their own open-source licences.
+   You are responsible for complying with those licences.
+
+4. AI-GENERATED MEDIA
+   If you create your own video or images with AI tools, you are responsible for
+   checking that the tool's terms allow your intended use.
+
+5. CREDIT
+   The "Built with" footer line may be removed at your choice.
+
+6. SUPPORT
+   Support is provided via [EMAIL/CHANNEL] for 30 days after purchase and covers
+   setup help and bugs in the Template. It does not cover custom development or
+   problems with third-party tools or hosting.
+
+7. NO WARRANTY
+   The Template is provided "as is", without warranty of any kind. The author is
+   not liable for any damages arising from its use, to the fullest extent permitted
+   by law.
+
+8. REFUNDS
+   Because this is a digital product, all sales are final once downloaded. If the
+   Template does not work as described, contact support within 7 days.
+
+9. TERMINATION
+   This licence ends automatically if you breach these terms. You must then stop
+   using and delete the Template.
+
+Contact: [EMAIL]

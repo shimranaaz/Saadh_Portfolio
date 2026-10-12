@@ -37,7 +37,7 @@ export default function Experience() {
           lines: e.detail.split('\n').map((l) => l.trim()).filter(Boolean),
           tech: e.tech ?? [],
           start: parseInt(y[0] ?? '0', 10),
-          year: y[y.length - 1] ?? '',
+               year: /present/i.test(e.period) ? 'Now' : (y[y.length - 1] ?? ''),
         }
       })
     return [...mk(EDUCATION, 'Education'), ...mk(EXPERIENCE, 'Experience')].sort(

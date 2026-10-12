@@ -198,9 +198,6 @@ export default function Hero() {
           <button className="btn btn-secondary" onClick={() => scrollToTarget('#contact')}>
             Let's talk
           </button>
-          <a className="btn btn-secondary" href={PROFILE.resume} download>
-            Résumé ↓
-          </a>
         </div>
       </div>
 
