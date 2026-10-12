@@ -54,6 +54,7 @@ export interface Project {
   features: string[]
   tech: string[]
   github?: string
+    image?: string
 }
 
 export interface Certification {
@@ -184,6 +185,7 @@ export const PROJECTS: Project[] = [
       'State management with GetX',
     ],
     tech: ['Flutter', 'Node.js'],
+      image: '/ecommerce.jpg',
   },
   {
     id: 'terraview-os',
@@ -199,6 +201,7 @@ export const PROJECTS: Project[] = [
       'Native Android method channel',
     ],
     tech: ['Flutter', 'Native Android', 'Python'],
+      image: '/Terraview.jpg',
   },
   {
     id: 'we-swap-any-car',
@@ -215,6 +218,7 @@ export const PROJECTS: Project[] = [
       'MVVM architecture',
     ],
     tech: ['Flutter', 'Node.js', 'Firebase'],
+     image: '/car.jpg',
   },
   {
     id: 'singx',
@@ -231,6 +235,7 @@ export const PROJECTS: Project[] = [
       'MVVM architecture',
     ],
     tech: ['Flutter', 'Node.js'],
+      image: '/mobile.jpg',
   },
   {
     id: 'enrich-tv',
@@ -247,6 +252,7 @@ export const PROJECTS: Project[] = [
       'MVVM architecture',
     ],
     tech: ['Flutter', 'Native Android', 'Python'],
+    image: '/view-mobile.jpg',
   },
 ]
 
@@ -271,7 +277,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     label: 'Years of expertise',
     caption: 'Flutter and Android development',
     detail: 'Dart · Kotlin',
-    value: 5,
+    value: 6,
   },
   {
     platform: 'Speed',

@@ -122,6 +122,8 @@ export default function Work() {
         .pan.open .w-ui{clip-path:inset(0 0 0 0 round 20px);transition-delay:.45s;}
         .ui-tag{position:absolute;right:16px;bottom:10px;font-family:var(--font-mono);
           font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);}
+                  .w-img{position:absolute;inset:16px;width:calc(100% - 32px);height:calc(100% - 32px);
+          object-fit:contain;border-radius:14px;display:block;}
 
         .mu{height:calc(100% - 22px);background:#fff;border-radius:14px;padding:14px;
           box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;
@@ -160,6 +162,7 @@ export default function Work() {
 
         /* Mobile: vertical accordion */
         @media (max-width:800px){
+                  .w-ui:has(.w-img){height:300px;}
           .work-acc{flex-direction:column;height:auto;gap:10px;}
           .pan{display:grid;grid-template-rows:auto 0fr;flex:none;
             transition:grid-template-rows .8s var(--ease),box-shadow .8s var(--ease);}
@@ -243,9 +246,20 @@ export default function Work() {
                       )}
                     </div>
 
-                    <div className="w-ui">
-                      <MiniUI variant={i} />
-                      <span className="ui-tag">Illustrative UI</span>
+                                 <div className="w-ui">
+                      {p.image ? (
+                        <img
+                          className="w-img"
+                          src={p.image}
+                          alt={`${p.title} preview`}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <>
+                          <MiniUI variant={i} />
+                          <span className="ui-tag">Illustrative UI</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
